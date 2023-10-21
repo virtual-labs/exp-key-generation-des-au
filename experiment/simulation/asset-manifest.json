@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/exp-key-generation-des-au/simulation/static/css/main.a92a257c.css",
-    "main.js": "/exp-key-generation-des-au/simulation/static/js/main.8f065a9c.js",
-    "static/js/787.36ba9dcd.chunk.js": "/exp-key-generation-des-au/simulation/static/js/787.36ba9dcd.chunk.js",
-    "index.html": "/exp-key-generation-des-au/simulation/index.html",
-    "main.a92a257c.css.map": "/exp-key-generation-des-au/simulation/static/css/main.a92a257c.css.map",
-    "main.8f065a9c.js.map": "/exp-key-generation-des-au/simulation/static/js/main.8f065a9c.js.map",
-    "787.36ba9dcd.chunk.js.map": "/exp-key-generation-des-au/simulation/static/js/787.36ba9dcd.chunk.js.map"
+    "main.css": "./static/css/main.a92a257c.css",
+    "main.js": "./static/js/main.6d8a2157.js",
+    "static/js/787.36ba9dcd.chunk.js": "./static/js/787.36ba9dcd.chunk.js",
+    "index.html": "./index.html",
+    "main.a92a257c.css.map": "./static/css/main.a92a257c.css.map",
+    "main.6d8a2157.js.map": "./static/js/main.6d8a2157.js.map",
+    "787.36ba9dcd.chunk.js.map": "./static/js/787.36ba9dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a92a257c.css",
-    "static/js/main.8f065a9c.js"
+    "static/js/main.6d8a2157.js"
   ]
 }
