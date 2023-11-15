@@ -1,36 +1,37 @@
+
 {
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "How many subkeys are generated in the DES key generation process?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "8",
+        "b": "10",
+        "c": "16",
+        "d": "32"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect. There are more than 8 subkeys generated in DES.",
+        "b": "Incorrect. There are more than 10 subkeys generated in DES.",
+        "c": "Correct. DES generates 16 subkeys for use in each of the 16 rounds of encryption.",
+        "d": "Incorrect. There are not as many as 32 subkeys in DES; there are only 16."
       },
-      "correctAnswer": "a",
+      "correctAnswer": "c",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Which component of the DES key generation is responsible for selecting 48 out of 56 bits to create a subkey?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Initial permutation (IP)",
+        "b": "Expansion permutation (E)",
+        "c": "Compression permutation (PC-2)",
+        "d": "Straight permutation (P)"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect. The initial permutation is involved in the encryption process, not key generation.",
+        "b": "Incorrect. The expansion permutation is used in the encryption function to expand the data block.",
+        "c": "Correct. The PC-2 compression permutation selects 48 out of 56 bits during subkey generation.",
+        "d": "Incorrect. The straight permutation is part of the encryption function, not the key generation."
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
