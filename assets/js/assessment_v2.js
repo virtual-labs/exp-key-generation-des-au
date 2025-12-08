@@ -1,185 +1,187 @@
 "use strict";
 
-const quizContainer = document.getElementById("quiz");
-const resultsContainer = document.getElementById("results");
-const submitButton = document.getElementById("submit");
-const difficultyLevels = ["beginner", "intermediate", "advanced"];
+document.addEventListener("DOMContentLoaded", function () {
+  const quizContainer = document.getElementById("quiz");
+  const resultsContainer = document.getElementById("results");
+  const submitButton = document.getElementById("submit");
+  const difficultyLevels = ["beginner", "intermediate", "advanced"];
 
-let difficulty = [];
-let questions = { all: myQuestions };
+  let difficulty = [];
+  let questions = { all: myQuestions };
 
-const addEventListener_explanations = () => {
-  let accordions = document.getElementsByClassName("accordion");
-  Array.from(accordions).forEach((accordion) => {
-    accordion.addEventListener("click", function () {
-      /* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
-      accordion.classList.toggle("active");
+  const addEventListener_explanations = () => {
+    let accordions = document.getElementsByClassName("accordion");
+    Array.from(accordions).forEach((accordion) => {
+      accordion.addEventListener("click", function () {
+        accordion.classList.toggle("active");
 
-      /* Toggle between hiding and showing the active panel */
-      let panel = accordion.parentElement.nextElementSibling;
-      if (panel.style.display === "block") {
-        panel.style.display = "none";
-      } else {
-        panel.style.display = "block";
-      }
+        let panel = accordion.parentElement.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
     });
-  });
-};
+  };
 
-const addEventListener_checkbox = () => {
-  difficulty.forEach((diff) => {
-    let cBox = document.getElementById(diff);
-    cBox.addEventListener("change", function () {
-      if (cBox.checked) {
+  const addEventListener_checkbox = () => {
+    difficulty.forEach((diff) => {
+      let cBox = document.getElementById(diff);
+      if (!cBox) return;
+      cBox.addEventListener("change", function () {
+        if (cBox.checked) {
+          if (difficulty.indexOf(diff) === -1) difficulty.push(diff);
+        } else {
+          difficulty.splice(difficulty.indexOf(diff), 1);
+        }
+        updateQuestions();
+      });
+    });
+  };
+
+  const populateQuestions = () => {
+    let num = 0;
+    myQuestions.forEach((currentQuestion) => {
+      if (difficultyLevels.indexOf(currentQuestion.difficulty) === -1) {
+        currentQuestion.difficulty = "beginner";
+      }
+      if (!(currentQuestion.difficulty in questions)) {
+        questions[currentQuestion.difficulty] = [];
+      }
+      questions[currentQuestion.difficulty].push(currentQuestion);
+
+      currentQuestion.num = num;
+      num += 1;
+    });
+
+    if (Object.keys(questions).length > 2) {
+      const dl = document.getElementById("difficulty-label");
+      if (dl) dl.style.display = "flex";
+      difficultyLevels.forEach((diff) => {
+        if (!(diff in questions)) {
+          return;
+        }
         difficulty.push(diff);
-      } else {
-        difficulty.splice(difficulty.indexOf(diff), 1);
-      }
-      updateQuestions();
-    });
-  });
-};
-
-const populateQuestions = () => {
-  let num = 0;
-  myQuestions.forEach((currentQuestion) => {
-    if (difficultyLevels.indexOf(currentQuestion.difficulty) === -1) {
-      currentQuestion.difficulty = "beginner";
-    }
-    if (!(currentQuestion.difficulty in questions)) {
-      questions[currentQuestion.difficulty] = [];
-    }
-    questions[currentQuestion.difficulty].push(currentQuestion);
-
-    currentQuestion.num = num;
-    num += 1;
-  });
-
-  if (Object.keys(questions).length > 2) {
-    document.getElementById("difficulty-label").style.display = "flex";
-    difficultyLevels.forEach((diff) => {
-      if (!(diff in questions)) {
-        return;
-      }
-      difficulty.push(diff);
-      let checkbox = document.getElementById(diff);
-      checkbox.checked = true;
-      checkbox.parentElement.style.display = "flex";
-    });
-  } else {
-    difficultyLevels.forEach((diff) => {
-      if (!(diff in questions)) {
-        return;
-      }
-      difficulty.push(diff);
-    });
-  }
-};
-
-const checkDifficulties = (classlist) => {
-  if (difficulty.length === Object.keys(questions).length - 1) return true;
-  for (let i in difficulty) {
-    if (classlist.contains(difficulty[i])) return true;
-  }
-  // If beginner is checked list the unlisted question as beginner
-  for (let i in difficultyLevels) {
-    if (classlist.contains(difficultyLevels[i])) return false;
-  }
-  if (difficulty.indexOf("beginner") > -1) {
-    return true;
-  }
-};
-
-function updateQuestions() {
-  const quiz = document.getElementById("quiz");
-  const qquestions = quiz.getElementsByClassName("question");
-  for (let i = 0; i < qquestions.length; i += 1) {
-    if (!checkDifficulties(qquestions[i].classList)) {
-      qquestions[i].style.display = "none";
-      qquestions[i].nextElementSibling.style.display = "none";
+        let checkbox = document.getElementById(diff);
+        if (checkbox) {
+          checkbox.checked = true;
+          if (checkbox.parentElement) checkbox.parentElement.style.display = "flex";
+        }
+      });
     } else {
-      qquestions[i].style.display = "block";
-      qquestions[i].nextElementSibling.style.display = "flex";
+      difficultyLevels.forEach((diff) => {
+        if (!(diff in questions)) {
+          return;
+        }
+        difficulty.push(diff);
+      });
+    }
+  };
+
+  const checkDifficulties = (classlist) => {
+    if (difficulty.length === Object.keys(questions).length - 1) return true;
+    for (let i in difficulty) {
+      if (classlist.contains(difficulty[i])) return true;
+    }
+    for (let i in difficultyLevels) {
+      if (classlist.contains(difficultyLevels[i])) return false;
+    }
+    if (difficulty.indexOf("beginner") > -1) {
+      return true;
+    }
+  };
+
+  function updateQuestions() {
+    const quiz = document.getElementById("quiz");
+    if (!quiz) return;
+    const qquestions = quiz.getElementsByClassName("question");
+    for (let i = 0; i < qquestions.length; i += 1) {
+      if (!checkDifficulties(qquestions[i].classList)) {
+        qquestions[i].style.display = "none";
+        if (qquestions[i].nextElementSibling)
+          qquestions[i].nextElementSibling.style.display = "none";
+      } else {
+        qquestions[i].style.display = "block";
+        if (qquestions[i].nextElementSibling)
+          qquestions[i].nextElementSibling.style.display = "flex";
+      }
     }
   }
-}
 
-function showResults() {
-  // gather answer containers from our quiz
-   const answerContainers = quizContainer.querySelectorAll(".answers");   
-  // keep track of user's answers
-  let numCorrect = 0;
-  let totalNum = 0;
-    
-  // for each question...
-  myQuestions.forEach((currentQuestion) => {
-    // find selected answer
-    if (
-      difficulty.indexOf(currentQuestion.difficulty) === -1 &&
-      difficulty.length !== Object.keys(questions).length - 1
-    )
-      return;
-    let questionNumber = currentQuestion.num;
-    const answerContainer = answerContainers[questionNumber];
-    const selector = `input[name=question${questionNumber}]:checked`;
-    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-    // Add to total
-    totalNum++;
+  function showResults() {
+    if (!quizContainer) return;
+    const answerContainers = quizContainer.querySelectorAll(".answers");
+    let numCorrect = 0;
+    let totalNum = 0;
 
-    // if answer is correct
-    if (userAnswer === currentQuestion.correctAnswer) {
-      // Color the correct answer lightgreen
-      const correctAnswerElement = document.getElementById(
-        "answer" + questionNumber.toString() + userAnswer
-      );
-      correctAnswerElement.style.color = "lightgreen";
+    myQuestions.forEach((currentQuestion) => {
+      if (
+        difficulty.indexOf(currentQuestion.difficulty) === -1 &&
+        difficulty.length !== Object.keys(questions).length - 1
+      )
+        return;
+      let questionNumber = currentQuestion.num;
+      const answerContainer = answerContainers[questionNumber];
+      if (!answerContainer) return;
+      const selector = `input[name=question${questionNumber}]:checked`;
+      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+      totalNum++;
 
-      // add to the number of correct answers
-      numCorrect++;
+      if (userAnswer === currentQuestion.correctAnswer) {
+        const correctAnswerElement = document.getElementById(
+          "answer" + questionNumber.toString() + userAnswer
+        );
+        if (correctAnswerElement) correctAnswerElement.style.color = "lightgreen";
 
-      // Show all explanations
-      if (currentQuestion.explanations) {
-        for (let answer in currentQuestion.answers) {
-          let explanation = currentQuestion.explanations[answer];
+        numCorrect++;
+
+        if (currentQuestion.explanations) {
+          for (let answer in currentQuestion.answers) {
+            let explanation = currentQuestion.explanations[answer];
+            let explanationButton = document.getElementById(
+              "explanation" + questionNumber.toString() + answer
+            );
+            if (explanationButton) {
+              if (explanation) {
+                if (explanationButton.parentElement && explanationButton.parentElement.nextElementSibling)
+                  explanationButton.parentElement.nextElementSibling.innerHTML = explanation;
+                explanationButton.style.display = "inline-block";
+              } else {
+                explanationButton.style.display = "none";
+              }
+            }
+          }
+        }
+      } else if (userAnswer) {
+        const wrongEl = document.getElementById(
+          "answer" + questionNumber.toString() + userAnswer
+        );
+        if (wrongEl) wrongEl.style.color = "red";
+
+        if (currentQuestion.explanations && userAnswer) {
+          let explanation = currentQuestion.explanations[userAnswer];
           let explanationButton = document.getElementById(
-            "explanation" + questionNumber.toString() + answer
+            "explanation" + questionNumber.toString() + userAnswer
           );
-          if (explanation) {
-            explanationButton.parentElement.nextElementSibling.innerHTML = explanation;
-            explanationButton.style.display = "inline-block";
-          } else {
-            explanationButton.style.display = "none";
+          if (explanationButton) {
+            if (explanationButton.parentElement && explanationButton.parentElement.nextElementSibling)
+              explanationButton.parentElement.nextElementSibling.innerHTML = explanation;
+            if (explanation) {
+              explanationButton.style.display = "inline-block";
+            } else {
+              explanationButton.style.display = "none";
+            }
           }
         }
       }
-    } else if (userAnswer) {
-      // if answer is wrong
-      document.getElementById(
-        "answer" + questionNumber.toString() + userAnswer
-      ).style.color = "red";
-      
-      // Show explanation for the selected answer
-      if (currentQuestion.explanations && userAnswer) {
-        let explanation = currentQuestion.explanations[userAnswer];
-        let explanationButton = document.getElementById(
-          "explanation" + questionNumber.toString() + userAnswer
-        );
-        if (explanation) {
-          explanationButton.parentElement.nextElementSibling.innerHTML = explanation;
-          explanationButton.style.display = "inline-block";
-        } else {
-          explanationButton.style.display = "none";
-        }
-      }
-    }
-  });
+    });
 
-  // show number of correct answers out of total
-  resultsContainer.innerHTML = `Score: ${numCorrect} out of ${totalNum}`;
-}
+    if (resultsContainer) resultsContainer.innerHTML = `Score: ${numCorrect} out of ${totalNum}`;
+  }
 
-populateQuestions();
-addEventListener_explanations();
-addEventListener_checkbox();
-submitButton.addEventListener("click", showResults);
+  populateQuestions();
+  addEventListener_explanations();
+  addEventListener_checkbox();
+  if (submitButton) submitButton.addEventListener("click", showResults);
+});

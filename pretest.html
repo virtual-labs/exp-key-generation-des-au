@@ -432,13 +432,154 @@
                     </div>
                     <p class="panel">Explanation</p>
                 </div>
-               </div>
+
+                  <div class="question beginner">
+                    DES uses a key generator to generate sixteen _______ round keys.
+                  </div>
+                  <div class="answers">
+                    <div id="answer2a">
+                      <label>
+                        <input type="radio" name="question2" value="a">
+                        a: 32-bit
+                      </label>
+                      <a href="#" id="explanation2a" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                    <div id="answer2b">
+                      <label>
+                        <input type="radio" name="question2" value="b">
+                        b: 48-bit
+                      </label>
+                      <a href="#" id="explanation2b" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                    <div id="answer2c">
+                      <label>
+                        <input type="radio" name="question2" value="c">
+                        c: 54-bit
+                      </label>
+                      <a href="#" id="explanation2c" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                    <div id="answer2d">
+                      <label>
+                        <input type="radio" name="question2" value="d">
+                        d: 42-bit
+                      </label>
+                      <a href="#" id="explanation2d" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                </div>
+
+                  <div class="question beginner">
+                    The DES algorithm has a key length of _____ after parity drop.
+                  </div>
+                  <div class="answers">
+                    <div id="answer3a">
+                      <label>
+                        <input type="radio" name="question3" value="a">
+                        a: 56-bit
+                      </label>
+                      <a href="#" id="explanation3a" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                    <div id="answer3b">
+                      <label>
+                        <input type="radio" name="question3" value="b">
+                        b: 64-bit
+                      </label>
+                      <a href="#" id="explanation3b" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                    <div id="answer3c">
+                      <label>
+                        <input type="radio" name="question3" value="c">
+                        c: 48-bit
+                      </label>
+                      <a href="#" id="explanation3c" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                    <div id="answer3d">
+                      <label>
+                        <input type="radio" name="question3" value="d">
+                        d: 72-bit
+                      </label>
+                      <a href="#" id="explanation3d" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                </div>
+
+                  <div class="question beginner">
+                    In the DES algorithm the 64 bit key input is shortened to 56 bits by ignoring every 4th bit.
+                  </div>
+                  <div class="answers">
+                    <div id="answer4a">
+                      <label>
+                        <input type="radio" name="question4" value="a">
+                        a: True
+                      </label>
+                      <a href="#" id="explanation4a" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                    <div id="answer4b">
+                      <label>
+                        <input type="radio" name="question4" value="b">
+                        b: False
+                      </label>
+                      <a href="#" id="explanation4b" class="accordion" onclick="return false;">Explanation</a>
+                    </div>
+                    <p class="panel">Explanation</p>
+                </div>
+
                 <button id="submit" class="btn btn-primary">Submit Quiz</button>
                 <div id="results"></div>
           </div>
             
             <script>
-              const myQuestions = [{"question":"What is the length of the initial key used in DES before subkey generation?","answers":{"a":"56 bits","b":"64 bits","c":"48 bits","d":"32 bits"},"explanations":{"a":"This is incorrect. The initial key length is 64 bits, although 8 bits are used for parity, leaving 56 bits for the actual key.","b":"Correct. The initial key length for DES is 64 bits, with 8 of those bits used for parity.","c":"Incorrect. 48 bits is the length of each of the 16 round subkeys, not the initial key.","d":"Incorrect. The initial key length is 64 bits, not 32 bits."},"correctAnswer":"b","difficulty":"beginner"},{"question":"In DES key generation, what is the purpose of the permutation boxes (P-boxes)?","answers":{"a":"To expand the key size","b":"To compress the key size","c":"To permute the key bits","d":"To encrypt the data"},"explanations":{"a":"Incorrect. P-boxes do not expand the key size; they permute the key bits.","b":"Incorrect. P-boxes do not compress the key size; they permute the key bits.","c":"Correct. P-boxes are used to permute the key bits during the subkey generation process.","d":"Incorrect. P-boxes are not used to encrypt the data; they are used in the process of key generation."},"correctAnswer":"c","difficulty":"beginner"}];
+              const myQuestions = [
+                {
+                  "question": "What is the length of the initial key used in DES before subkey generation?",
+                  "answers": {"a": "56 bits", "b": "64 bits", "c": "48 bits", "d": "32 bits"},
+                  "explanations": {
+                    "a": "This is incorrect. The initial key length is 64 bits, although 8 bits are used for parity, leaving 56 bits for the actual key.",
+                    "b": "Correct. The initial key length for DES is 64 bits, with 8 of those bits used for parity.",
+                    "c": "Incorrect. 48 bits is the length of each of the 16 round subkeys, not the initial key.",
+                    "d": "Incorrect. The initial key length is 64 bits, not 32 bits."
+                  },
+                  "correctAnswer": "b",
+                  "difficulty": "beginner"
+                },
+                {
+                  "question": "In DES key generation, what is the purpose of the permutation boxes (P-boxes)?",
+                  "answers": {"a": "To expand the key size", "b": "To compress the key size", "c": "To permute the key bits", "d": "To encrypt the data"},
+                  "explanations": {
+                    "a": "Incorrect. P-boxes do not expand the key size; they permute the key bits.",
+                    "b": "Incorrect. P-boxes do not compress the key size; they permute the key bits.",
+                    "c": "Correct. P-boxes are used to permute the key bits during the subkey generation process.",
+                    "d": "Incorrect. P-boxes are not used to encrypt the data; they are used in the process of key generation."
+                  },
+                  "correctAnswer": "c",
+                  "difficulty": "beginner"
+                },
+                {
+                  "question": "DES uses a key generator to generate sixteen _______ round keys.",
+                  "answers": {"a": "32-bit", "b": "48-bit", "c": "54-bit", "d": "42-bit"},
+                  "correctAnswer": "b",
+                  "difficulty": "beginner"
+                },
+                {
+                  "question": "The DES algorithm has a key length of _____ after parity drop.",
+                  "answers": {"a": "56-bit", "b": "64-bit", "c": "48-bit", "d": "72-bit"},
+                  "correctAnswer": "a",
+                  "difficulty": "beginner"
+                },
+                {
+                  "question": "In the DES algorithm the 64 bit key input is shortened to 56 bits by ignoring every 4th bit.",
+                  "answers": {"a": "True", "b": "False"},
+                  "correctAnswer": "b",
+                  "difficulty": "beginner"
+                }
+              ];
             </script>
               <script src="./assets/js/assessment_v2.js"></script>  
           <div class="bug-report-mobile">

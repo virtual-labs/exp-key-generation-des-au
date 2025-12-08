@@ -35,6 +35,37 @@
       },
       "correctAnswer": "c",
       "difficulty": "beginner"
+    },
+    {
+      "question": "DES uses a key generator to generate sixteen _______ round keys.",
+      "answers": {
+        "a": "32-bit",
+        "b": "48-bit",
+        "c": "54-bit",
+        "d": "42-bit"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "The DES algorithm has a key length of _____ after parity drop.",
+      "answers": {
+        "a": "56-bit",
+        "b": "64-bit",
+        "c": "48-bit",
+        "d": "72-bit"
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In the DES algorithm the 64 bit key input is shortened to 56 bits by ignoring every 4th bit.",
+      "answers": {
+        "a": "True",
+        "b": "False"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
     }
   ]
 }
