@@ -1,0 +1,71 @@
+
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "How many subkeys are generated in the DES key generation process?",
+      "answers": {
+        "a": "8",
+        "b": "10",
+        "c": "16",
+        "d": "32"
+      },
+      "explanations": {
+        "a": "Incorrect. There are more than 8 subkeys generated in DES.",
+        "b": "Incorrect. There are more than 10 subkeys generated in DES.",
+        "c": "Correct. DES generates 16 subkeys for use in each of the 16 rounds of encryption.",
+        "d": "Incorrect. There are not as many as 32 subkeys in DES; there are only 16."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which component of the DES key generation is responsible for selecting 48 out of 56 bits to create a subkey?",
+      "answers": {
+        "a": "Initial permutation (IP)",
+        "b": "Expansion permutation (E)",
+        "c": "Compression permutation (PC-2)",
+        "d": "Straight permutation (P)"
+      },
+      "explanations": {
+        "a": "Incorrect. The initial permutation is involved in the encryption process, not key generation.",
+        "b": "Incorrect. The expansion permutation is used in the encryption function to expand the data block.",
+        "c": "Correct. The PC-2 compression permutation selects 48 out of 56 bits during subkey generation.",
+        "d": "Incorrect. The straight permutation is part of the encryption function, not the key generation."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Total number of left shifts across all DES rounds is:",
+      "answers": {
+        "a": "12",
+        "b": "14",
+        "c": "16",
+        "d": "28"
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "DES produces 16 round keys. If you mistakenly do two left shifts in round 2 (instead of 1), how many round keys will become wrong?",
+      "answers": {
+        "a": "Only round 2",
+        "b": "Only rounds 2–4",
+        "c": "All rounds from 2 to 16",
+        "d": "All 16"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "In the DES algorithm, although the key size is 64 bits, only 48bits are used for the encryption procedure, the rest are parity bits.",
+      "answers": {
+        "a": "True",
+        "b": "False"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    }
+  ]
+}
