@@ -1,15 +1,5 @@
 ### References
 
-- Stallings, W. *Cryptography and Network Security: Principles and Practice*.  
-  https://www.pearson.com/en-us/subject-catalog/p/cryptography-and-network-security/P200000003182
-
-
-
-- GeeksforGeeks. *Data Encryption Standard (DES) Algorithm*.  
-  https://www.geeksforgeeks.org/data-encryption-standard-des-set-1/
-
-- Tutorialspoint. *DES – Data Encryption Standard*.  
-  https://www.tutorialspoint.com/cryptography/data_encryption_standard.htm
-
-- Khan Academy. *Block Ciphers and DES*.  
-  https://www.khanacademy.org/computing/computer-science/cryptography
+1. Stallings, W. (2017). Cryptography and network security, 7/E. Pearson Education India.
+2. Stamp, M. (2011). Information security: principles and practice. John Wiley & Sons.
+3. https://page.math.tu-berlin.de/~kant/teaching/hess/krypto-ws2006/des.htm
